@@ -1,4 +1,4 @@
 # ArcaPay assignment
 
-Web application contains 2 assignments
+Web application contains 2 assignments in app root page
 
