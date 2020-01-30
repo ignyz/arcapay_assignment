@@ -53,7 +53,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
         'httpOnly' => true
     ]));
-
+    $routes->extensions(['csv']);
     /**
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
@@ -75,6 +75,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/task1', ['controller' => 'Task1', 'action' => 'index']);
     $routes->connect('/task1/add', ['controller' => 'Task1', 'action' => 'add']);
+
 
     /**
      * Connect catchall routes for all controllers.

@@ -60,4 +60,12 @@
             <?php endif; ?>
         </tbody>
     </table>
+    <?php
+
+
+    echo $this->Html->link('export', array(
+        'controller' => 'Task1',
+        'action' => 'export',
+        'ext' => 'csv'
+    )); ?>
 </div>

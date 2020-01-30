@@ -23,7 +23,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>: 
+        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -32,8 +32,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?php echo $this->Html->script('jquery-3.1.0') ?>
     <?php echo $this->Html->script('bootstrap') ?>
 
-    <?php //echo $this->Html->css('base.css') ?>
-    <?php //echo $this->Html->css('style.css') ?>
+    <?php //echo $this->Html->css('base.css') 
+    ?>
+    <?php //echo $this->Html->css('style.css') 
+    ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -60,10 +62,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <span class="navbar-toggler-icon"></span>
         </button>
 
-           
+
         </div>
     </nav>
-    <?= $this->Flash->render() ?>
     <div class="container clearfix" style="margin:40px">
         <?= $this->fetch('content') ?>
     </div>
