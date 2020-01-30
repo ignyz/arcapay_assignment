@@ -30,6 +30,9 @@ if (PHP_SAPI === 'cli-server') {
 }
 require dirname(__DIR__) . '/vendor/autoload.php';
 
+//require dirname(__DIR__ . '/../../../..') . '/phpMyAdmin/vendor/autoload.php' ;// . '/vendor/autoload.php';
+//C:\xampp\phpMyAdmin\vendor
+
 use App\Application;
 use Cake\Http\Server;
 

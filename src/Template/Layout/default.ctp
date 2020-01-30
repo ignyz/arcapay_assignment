@@ -23,13 +23,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        <?= $cakeDescription ?>: 
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <?php echo $this->Html->css('bootstrap.min') ?>
+    <?php echo $this->Html->script('jquery-3.1.0') ?>
+    <?php echo $this->Html->script('bootstrap') ?>
+
+    <?php //echo $this->Html->css('base.css') ?>
+    <?php //echo $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,17 +41,26 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
+    <!-- <nav class="top-bar expanded" data-topbar role="navigation"> -->
+    <!-- <ul class="title-area large-3 medium-4 columns"> -->
+    <!-- <li class="name"> -->
+    <!-- <h1><a href=""><?= $this->fetch('title') ?></a></h1> -->
+    <!-- </li> -->
+    <!-- </ul> -->
+    <!-- <div class="top-bar-section"> -->
+    <!-- <ul class="right"> -->
+    <!-- <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li> -->
+    <!-- <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li> -->
+    <!-- </ul> -->
+    <!-- </div> -->
+    <!-- </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ArcaPay Project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+           
         </div>
     </nav>
     <?= $this->Flash->render() ?>
