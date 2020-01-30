@@ -12,10 +12,15 @@
         <li>Export all products as csv or xml</li>
     </ul>
 </p>
-
-<div class="row">
+<p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
     <?php echo $this->Flash->render('message'); ?>
-    <?php echo $this->Html->link('Add New Product', ['action' => 'add'], ['class' => 'btn btn-primary']); ?>
+</p>
+<br>
+<?php echo $this->Html->link('Add New Product', ['action' => 'add'], ['class' => 'btn btn-primary']); ?>
+<br>
+<div class="row">
+
+
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -38,6 +43,16 @@
                         <td><?php echo $product->description; ?></td>
                         <td><?php echo $product->modified; ?></td>
                         <td><?php echo $product->created; ?></td>
+                        <td><?php echo $this->html->link('View', ['action' => 'view', $product->id], ['class' => 'btn btn-primary']) ?>
+                            <?php echo $this->html->link('Edit', ['action' => 'edit', $product->id], ['class' => 'btn btn-success']) ?>
+                            <?= $this->Form->postLink(
+                                'Delete',
+                                ['action' => 'delete', $product->id],
+                                ['class' => 'btn btn-danger'],
+                                ['confirm' => 'Are you sure?']
+                            ); ?>
+
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>

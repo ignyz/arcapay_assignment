@@ -54,6 +54,7 @@ class ProductsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->requirePresence('name')
             ->scalar('name')
             ->maxLength('name', 255)
             ->allowEmptyString('name');
@@ -71,6 +72,7 @@ class ProductsTable extends Table
             ->maxLength('photo', 255)
             ->allowEmptyString('photo');
 
+        //$validator->requirePresence(['name', 'price', 'description']);
         return $validator;
     }
 }

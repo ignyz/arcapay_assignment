@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration
  *
@@ -17,10 +18,12 @@
  * @link          https://cakephp.org CakePHP(tm) Project
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Core\Plugin;
 
 /**
  * The default class to use for all routes
@@ -71,6 +74,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     //$routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     $routes->connect('/task1', ['controller' => 'Task1', 'action' => 'index']);
+    $routes->connect('/task1/add', ['controller' => 'Task1', 'action' => 'add']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -92,7 +96,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
+    $routes->fallbacks('DashedRoute');
 });
+Plugin::routes();
 
 /**
  * If you need a different set of middleware or none at all,
