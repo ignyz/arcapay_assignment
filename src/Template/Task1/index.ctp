@@ -17,6 +17,13 @@
 </p>
 <br>
 <?php echo $this->Html->link('Add New Product', ['action' => 'add'], ['class' => 'btn btn-primary']); ?>
+
+<?php
+echo $this->Html->link('export', array(
+    'controller' => 'Task1',
+    'action' => 'export',
+    'ext' => 'csv'
+), ['class' => 'btn btn-success']); ?>
 <br>
 <div class="row">
 
@@ -60,12 +67,5 @@
             <?php endif; ?>
         </tbody>
     </table>
-    <?php
 
-
-    echo $this->Html->link('export', array(
-        'controller' => 'Task1',
-        'action' => 'export',
-        'ext' => 'csv'
-    )); ?>
 </div>

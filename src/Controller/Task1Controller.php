@@ -138,8 +138,6 @@ class Task1Controller extends AppController
                     //prepare the filename for database entry
                     $products['photo'] = $file['photo']['name'];
                 }
-            } else {
-                // $products['photo'] = Null;
             }
             //-----------------------------------------------------------------------------
 
@@ -166,17 +164,29 @@ class Task1Controller extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
+    // public function export()
+    // {
+    //     $p = TableRegistry::getTableLocator()->get('products');
+
+    //     $this->response->download("export.csv");
+
+    //     $data = $p->find('all');
+    //     $this->set(compact('data'));
+
+    //     $this->layout = 'ajax';
+
+    //     return;
+    // }
     public function export()
     {
         $p = TableRegistry::getTableLocator()->get('products');
-
-        $this->response->download("export.csv");
-
+        $this->response = $this->response->withDownload('my-file.csv');
+        $_header = array('ID', 'Name', 'Price', 'Description', 'Photo', 'Modified', 'Created');
         $data = $p->find('all');
-        $this->set(compact('data'));
 
-        $this->layout = 'ajax';
+        $_serialize = 'data';
 
-        return;
+        $this->viewBuilder()->setClassName('CsvView.Csv');
+        $this->set(compact('data', '_header', '_serialize'));
     }
 }
