@@ -9,9 +9,11 @@
 
 -CakePHP 2.x documentation - >https://book.cakephp.org/2/_downloads/en/CakePHPCookbook.pdf
 
-# Task 1
-Intro
--Connect to database. Run miggrations and seeds.
+
+# Task1
+###Intro
+*Connect to database. 
+*Run miggrations and seeds.
 
 Create a web app with:
 
