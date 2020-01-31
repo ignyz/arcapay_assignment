@@ -11,9 +11,11 @@
 
 
 # Task1
-###Intro
-*Connect to database. 
-*Run miggrations and seeds.
+
+### Intro
+
+* Connect to database. 
+* Run miggrations and seeds.
 
 Create a web app with:
 
