@@ -17,7 +17,6 @@
 * Connect to database. 
 * Run miggrations and seeds.
 * Create a web app with:
-
 - [x] Product list (CRUD)
 - [x] Option to upload photo to selected product
 - [ ] Option to Rate product from 1 to 5. Show average score.
