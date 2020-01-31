@@ -14,8 +14,8 @@
 
 ### Intro
 
-* ~~Connect to database. 
-* ~~Run miggrations and seeds.
+* ~~Connect to database.~~ 
+* ~~Run miggrations and seeds.~~
 * Create a web app with:
 - [x] Product list (CRUD)
 - [x] Option to upload photo to selected product
