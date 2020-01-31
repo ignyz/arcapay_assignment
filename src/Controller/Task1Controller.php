@@ -42,9 +42,8 @@ class Task1Controller extends AppController
             $products->modified = date('Y-m-d H:i:s');
             //Check if image has been uploaded
 
-            if (!empty($this->request->getData()['photo']['name'])) { //['Product']['photo']['name'])) {
+            if (!empty($this->request->getData()['photo']['name'])) { 
 
-                //$file = $this->request->getData['Product']['photo']; //put the data into a var for easy use
                 $file = $this->request->getData();
 
                 $ext = substr(strtolower(strrchr($file['photo']['name'], '.')), 1); //get the extension
@@ -88,9 +87,8 @@ class Task1Controller extends AppController
             $products = $products_table->patchEntity($products, $this->request->getData());
             $products->modified = date('Y-m-d H:i:s');
             //-----------------------------------------------------------------------------
-            if (!empty($this->request->getData()['photo']['name'])) { //['Product']['photo']['name'])) {
+            if (!empty($this->request->getData()['photo']['name'])) { 
 
-                //$file = $this->request->getData['Product']['photo']; //put the data into a var for easy use
                 $file = $this->request->getData();
 
                 $ext = substr(strtolower(strrchr($file['photo']['name'], '.')), 1); //get the extension
@@ -121,9 +119,8 @@ class Task1Controller extends AppController
 
             $products->modified = date('Y-m-d H:i:s');
             //-----------------------------------------------------------------------------
-            if (!empty($this->request->getData()['photo']['name'])) { //['Product']['photo']['name'])) {
+            if (!empty($this->request->getData()['photo']['name'])) { 
 
-                //$file = $this->request->getData['Product']['photo']; //put the data into a var for easy use
                 $file = $this->request->getData();
 
                 $ext = substr(strtolower(strrchr($file['photo']['name'], '.')), 1); //get the extension
@@ -164,19 +161,6 @@ class Task1Controller extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
-    // public function export()
-    // {
-    //     $p = TableRegistry::getTableLocator()->get('products');
-
-    //     $this->response->download("export.csv");
-
-    //     $data = $p->find('all');
-    //     $this->set(compact('data'));
-
-    //     $this->layout = 'ajax';
-
-    //     return;
-    // }
     public function export()
     {
         $p = TableRegistry::getTableLocator()->get('products');

@@ -2,7 +2,6 @@
 
 <head>
     <style>
-        /* resize images */
         .container img {
             width: 100%;
             height: auto;
@@ -35,10 +34,6 @@
     </div>
     <div class="form-group">
         <div class="col-lg-10">
-            <!-- <input onchange=file_changed() type=file id=input> -->
-
-            <!-- <td><input type="file" name="photo" value="<?php //echo $products['photo']
-                                                            ?>" enctype="multipart/form-data"></td> -->
             <?php echo $this->Form->input('photo', array('type' => 'file', 'id' => 'input', 'onchange' => 'file_changed()'), ['value' => $products['photo']]);
             ?>
         </div>

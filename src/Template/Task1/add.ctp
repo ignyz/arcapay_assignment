@@ -6,8 +6,6 @@
         <div class="col-lg-10">
             <?php
             echo $this->Form->create('Product', array('url' => array('action' => 'add'), 'enctype' => 'multipart/form-data'));
-            //echo $this->Form->create('Product', array('url' => array('action' => 'add'), 'enctype' => 'multipart/form-data'));
-            //echo $this->Form->create("Product", array('url' => '/task1/add'));
             echo $this->Form->input('name', ['class' => 'form-control', 'Placeholder' => 'Name']); ?>
         </div>
     </div>

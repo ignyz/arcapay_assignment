@@ -1,5 +1,7 @@
 <h2>Task 1</h2>
 <h3>Intro</h3>
+
+
 <p>
     Connect to database. Run miggrations and seeds.
 </p>
@@ -50,6 +52,7 @@ echo $this->Html->link('export', array(
                         <td><?php echo $product->description; ?></td>
                         <td><?php echo $product->modified; ?></td>
                         <td><?php echo $product->created; ?></td>
+                       
                         <td><?php echo $this->html->link('View', ['action' => 'view', $product->id], ['class' => 'btn btn-primary']) ?>
                             <?php echo $this->html->link('Edit', ['action' => 'edit', $product->id], ['class' => 'btn btn-success']) ?>
                             <?= $this->Form->postLink(
