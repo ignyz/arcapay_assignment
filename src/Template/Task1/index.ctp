@@ -51,7 +51,7 @@ echo $this->Html->link('export', array(
                         <td><?php echo $product->name; ?></td>
                         <td><?php echo $product->price; ?> €</td>
 
-                        <td><?php echo $product->description; ?></td>
+                        <td style="max-width: 200px;"><?php echo $product->description; ?></td>
                         <td> &#11088;<?php $cnt = 0;
                                         $sum = 0;
 

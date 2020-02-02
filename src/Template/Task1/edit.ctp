@@ -9,7 +9,7 @@
     </style>
 </head>
 <fieldset>
-    <legend>Add product</legend>
+    <legend>Edit product</legend>
 
     <div class="form-group">
         <div class="col-lg-10">

@@ -7,43 +7,51 @@
             height: auto;
         }
 
-        .rate_widget {
-            border: 1px solid #CCC;
-            overflow: visible;
-            padding: 10px;
-            position: relative;
-            width: 180px;
-            height: 32px;
+        * {
+            margin: 0;
+            padding: 0;
         }
 
-        .ratings_stars {
-            background: url('../../../arcapay_assignment\\webroot\\img\\star_empty.png') no-repeat;
+        .rate {
             float: left;
-            height: 28px;
-            padding: 2px;
-            width: 32px;
+            height: 46px;
+            padding: 0 10px;
         }
 
-        .ratings_vote {
-            background: url('star_full.png') no-repeat;
-        }
-
-        .ratings_over {
-            background: url('star_highlight.png') no-repeat;
-        }
-
-        .total_votes {
-            background: #eaeaea;
-            top: 58px;
-            left: 0;
-            padding: 5px;
+        .rate:not(:checked)>input {
             position: absolute;
+            top: -9999px;
         }
 
-        .movie_choice {
-            font: 10px verdana, sans-serif;
-            margin: 0 auto 40px auto;
-            width: 180px;
+        .rate:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rate>input:checked~label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked)>label:hover,
+        .rate:not(:checked)>label:hover~label {
+            color: #deb217;
+        }
+
+        .rate>input:checked+label:hover,
+        .rate>input:checked+label:hover~label,
+        .rate>input:checked~label:hover,
+        .rate>input:checked~label:hover~label,
+        .rate>label:hover~input:checked~label {
+            color: #c59b08;
         }
     </style>
 </head>
@@ -67,12 +75,9 @@
                 </td>
 
 
-                <td>
+                <td style="max-width: 200px;">
                     <p>Description: <?php echo $products['description']; ?></p>
                 </td>
-
-
-
 
                 <td>
                     <p>Created: <?php echo $products['created']; ?></p>
@@ -96,15 +101,29 @@
                                         echo number_format($sum / $cnt, 1);
                                     else :
                                         echo " -";
-                                    endif;  ?></td>
+                                    endif;
 
-                <td>
-                    <?php
-                    $id = $products['id'];
-                    $data = array(1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5');
-                    echo $this->Form->create('Product', array('url' => array('action' => 'vote', $id), 'enctype' => 'multipart/form-data'));
-                    echo $this->Form->input('score', array("options" => $data));
-                    ?>
+                                    ?></td>
+
+                <?php
+                $id = $products['id'];
+                echo $this->Form->create('Product', array('url' => array('action' => 'vote', $id), 'enctype' => 'multipart/form-data'));
+                ?>
+
+                <td class="shrink" style="width: 200px;">
+                    <div class="rate" >
+
+                        <input name="score" type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input name="score" type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input name="score" type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input name="score" type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input name="score" type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>
                 </td>
 
                 <td>
@@ -130,61 +149,5 @@
 
 </body>
 <script>
-    $('.ratings_stars').hover(
-        // Handles the mouseover
-        function() {
-            $(this).prevAll().andSelf().addClass('ratings_over');
-            $(this).nextAll().removeClass('ratings_vote');
-        },
-        // Handles the mouseout
-        function() {
-            $(this).prevAll().andSelf().removeClass('ratings_over');
-            set_votes($(this).parent());
-        }
-    );
-    $('.rate_widget').each(function(i) {
-        var widget = this;
-        var out_data = {
-            widget_id: $(widget).attr('id'),
-            fetch: 1
-        };
-        $.post(
-            'ratings.php',
-            out_data,
-            function(INFO) {
-                $(widget).data('fsr', INFO);
-                set_votes(widget);
-            },
-            'json'
-        );
-    });
-    $('.ratings_stars').bind('click', function() {
-        var star = this;
-        var widget = $(this).parent();
 
-        var clicked_data = {
-            clicked_on: $(star).attr('class'),
-            widget_id: widget.attr('id')
-        };
-        $.post(
-            'ratings.php',
-            clicked_data,
-            function(INFO) {
-                widget.data('fsr', INFO);
-                set_votes(widget);
-            },
-            'json'
-        );
-    });
-
-    function set_votes(widget) {
-
-        var avg = $(widget).data('fsr').whole_avg;
-        var votes = $(widget).data('fsr').number_votes;
-        var exact = $(widget).data('fsr').dec_avg;
-
-        $(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
-        $(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
-        $(widget).find('.total_votes').text(votes + ' votes recorded (' + exact + ' rating)');
-    }
 </script>

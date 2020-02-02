@@ -180,21 +180,25 @@ class Task1Controller extends AppController
 
     public function vote($id)
     {
-        $products_rating_table = TableRegistry::get('product_ratings');
-        $rating = $products_rating_table->newEntity();
-        $rating->created = date('Y-m-d H:i:s');
-        $rating->score = $this->request->getData()['score'];
-        $rating->product_id = $id;
+        if ($this->request->getData()['score'] != Null) {
+            $products_rating_table = TableRegistry::get('product_ratings');
+            $rating = $products_rating_table->newEntity();
+            $rating->created = date('Y-m-d H:i:s');
+            $rating->score = $this->request->getData()['score'];
+            $rating->product_id = $id;
 
-        $rating = $products_rating_table->patchEntity($rating, $this->request->getData());
+            $rating = $products_rating_table->patchEntity($rating, $this->request->getData());
 
-        //update your number in the database
-        if ($products_rating_table->save($rating)) {
-            $this->set('message', 'Thank you for voting!');
+            //update your number in the database
+            if ($products_rating_table->save($rating)) {
+                $this->set('message', 'Thank you for voting!');
+            } else {
+                $this->set('message', 'Try again.');
+            }
+
+            return $this->redirect(['action' => 'view', $id]);
         } else {
-            $this->set('message', 'Try again.');
+            return $this->redirect(['action' => 'view', $id]);
         }
-
-        return $this->redirect(['action' => 'view', $id]);
     }
 }
