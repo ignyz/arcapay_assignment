@@ -83,20 +83,7 @@
                 <td>
                     <p>Modified: <?php echo $products['modified']; ?></p>
                 </td>
-                <td>
-                    <form action='rate' method='POST'>
-                        <select name='rating'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <input type='hidden' value='$id' name='id'>
-
-                        <input type='submit' value='Rate!'>
-                    </form>
-                </td>
+              
 
 
                 <td>Score: &#11088;<?php $cnt = 0;
@@ -127,7 +114,7 @@
 
                 <td>
                     <?php
-                    echo $this->Form->button(__('VOTE!'), ['type' => 'submit', 'class' => 'form=control btn btn-primary']);
+                    echo $this->Form->button(__('VOTE!'), ['url' => ['action' => 'publish', 'class' => 'form=control btn btn-primary']]);
                     ?>
                 </td>
                 <?php echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
