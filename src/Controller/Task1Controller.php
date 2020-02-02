@@ -178,13 +178,16 @@ class Task1Controller extends AppController
         $this->set(compact('data', '_header', '_serialize'));
     }
 
-    function vote($id)
+    function vote()
     {
         $products_rating_table = TableRegistry::get('product_ratings');
         $rating = $products_rating_table->newEntity();
         $rating->created = date('Y-m-d H:i:s');
         $this->request->getData();
 
+        echo '<pre>';
+        print_r($rating);
+        echo '</pre>';
         //update your number in the database
         if ($products_rating_table->save($rating)) {
             $this->set('message', 'Thank you for voting!');

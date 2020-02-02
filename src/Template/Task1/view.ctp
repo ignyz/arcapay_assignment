@@ -124,38 +124,12 @@
                 <td>
                     <?php echo $this->Form->input('score', ['class' => 'form-control', 'Placeholder' => 'Score']); ?>
                 </td>
-                <td><?php echo $this->Form->button(
-                        __('VOTE!'),
-                        array('action' => 'vote', $products['id']),
-                        ['type' => 'submit', 'class' => 'form=control btn btn-success']
-                    ) ?>
+
+                <td>
+                    <?php
+                    echo $this->Form->button(__('VOTE!'), ['type' => 'submit', 'class' => 'form=control btn btn-primary']);
+                    ?>
                 </td>
-
-
-
-                <div class="form-group">
-                    <div class="col-lg-10">
-                        <?php echo $this->Form->input('score', ['class' => 'form-control', 'Placeholder' => 'Score']); ?>
-                    </div>
-                </div>
-
-                <?php
-                echo $this->Form->button(__('Add Product'), ['type' => 'submit', 'class' => 'form=control btn btn-primary']);
-                ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <?php echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
 
                 <div class="form-group">
