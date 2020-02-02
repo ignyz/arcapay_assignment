@@ -15,6 +15,7 @@ use Cake\Datasource\ConnectionManager;
 
 class Task1Controller extends AppController
 {
+
     public function initialize()
     {
         parent::initialize();
@@ -74,6 +75,8 @@ class Task1Controller extends AppController
 
     public function view($id = Null)
     {
+
+        //$this->Html->script('Js');
         $products_table = TableRegistry::get('products');
         $products = $products_table->get($id, ['contain' => 'ProductRatings'])->toArray();
         $this->set('products', $products);
@@ -173,5 +176,23 @@ class Task1Controller extends AppController
 
         $this->viewBuilder()->setClassName('CsvView.Csv');
         $this->set(compact('data', '_header', '_serialize'));
+    }
+
+    function vote($id)
+    {
+        $products_rating_table = TableRegistry::get('product_ratings');
+        $rating = $products_rating_table->newEntity();
+        $rating->created = date('Y-m-d H:i:s');
+        $this->request->getData();
+
+        //update your number in the database
+        if ($products_rating_table->save($rating)) {
+            $this->set('message', 'Thank you for voting!');
+        } else {
+            $this->set('message', 'Try again.');
+        }
+
+        //then in vote.ctp, echo $message somewhere
+        //the result of vote.ctp will replace #content on your page
     }
 }

@@ -49,16 +49,7 @@
 </head>
 
 <body>
-    <div class='movie_choice'>
-        <div id="r2" class="rate_widget">
-            <div class="star_1 ratings_stars"></div>
-            <div class="star_2 ratings_stars"></div>
-            <div class="star_3 ratings_stars"></div>
-            <div class="star_4 ratings_stars"></div>
-            <div class="star_5 ratings_stars"></div>
-            <div class="total_votes">vote data</div>
-        </div>
-    </div>
+
     <fieldset>
 
 
@@ -80,17 +71,7 @@
                     <p>Description: <?php echo $products['description']; ?></p>
                 </td>
 
-                <td>Score: &#11088;<?php $cnt = 0;
-                                    $sum = 0;
-                                    foreach ($products['product_ratings'] as $rating) :
-                                        $cnt++;
-                                        $sum = $sum  + $rating['score'];
-                                    endforeach;
-                                    if ($cnt != 0) :
-                                        echo number_format($sum / $cnt, 1);
-                                    else :
-                                        echo " -";
-                                    endif;  ?></td>
+
 
 
                 <td>
@@ -102,6 +83,78 @@
                 <td>
                     <p>Modified: <?php echo $products['modified']; ?></p>
                 </td>
+                <td>
+                    <form action='rate' method='POST'>
+                        <select name='rating'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <input type='hidden' value='$id' name='id'>
+
+                        <input type='submit' value='Rate!'>
+                    </form>
+                </td>
+
+
+                <td>Score: &#11088;<?php $cnt = 0;
+                                    $sum = 0;
+                                    foreach ($products['product_ratings'] as $rating) :
+                                        $cnt++;
+                                        $sum = $sum  + $rating['score'];
+                                    endforeach;
+                                    if ($cnt != 0) :
+                                        echo number_format($sum / $cnt, 1);
+                                    else :
+                                        echo " -";
+                                    endif;  ?></td>
+                <td><?php
+                    //$this->loadHelper('JsHelper');
+                    // $this->Html->event(
+                    //     'click',
+                    //     $this->Html->request(
+                    //         array('action' => 'vote', $products['id']), //this is effectively www.yourdomain.com/posts/vote/1 (if the post_id is 1)
+                    //         array('async' => true, 'update' => '#content')
+                    //     )
+                    // );
+
+                    ?>
+                <td>
+                    <?php echo $this->Form->input('score', ['class' => 'form-control', 'Placeholder' => 'Score']); ?>
+                </td>
+                <td><?php echo $this->Form->button(
+                        __('VOTE!'),
+                        array('action' => 'vote', $products['id']),
+                        ['type' => 'submit', 'class' => 'form=control btn btn-success']
+                    ) ?>
+                </td>
+
+
+
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <?php echo $this->Form->input('score', ['class' => 'form-control', 'Placeholder' => 'Score']); ?>
+                    </div>
+                </div>
+
+                <?php
+                echo $this->Form->button(__('Add Product'), ['type' => 'submit', 'class' => 'form=control btn btn-primary']);
+                ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <?php echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
 
@@ -115,6 +168,8 @@
             <tr>
         </table>
     </fieldset>
+
+
 </body>
 <script>
     $('.ratings_stars').hover(
