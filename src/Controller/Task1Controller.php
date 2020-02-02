@@ -178,16 +178,16 @@ class Task1Controller extends AppController
         $this->set(compact('data', '_header', '_serialize'));
     }
 
-    function vote()
+    public function vote($id)
     {
         $products_rating_table = TableRegistry::get('product_ratings');
         $rating = $products_rating_table->newEntity();
         $rating->created = date('Y-m-d H:i:s');
-        $this->request->getData();
+        $rating->score = $this->request->getData()['score'];
+        $rating->product_id = $id;
 
-        echo '<pre>';
-        print_r($rating);
-        echo '</pre>';
+        $rating = $products_rating_table->patchEntity($rating, $this->request->getData());
+
         //update your number in the database
         if ($products_rating_table->save($rating)) {
             $this->set('message', 'Thank you for voting!');
@@ -195,7 +195,6 @@ class Task1Controller extends AppController
             $this->set('message', 'Try again.');
         }
 
-        //then in vote.ctp, echo $message somewhere
-        //the result of vote.ctp will replace #content on your page
+        return $this->redirect(['action' => 'view', $id]);
     }
 }

@@ -83,7 +83,7 @@
                 <td>
                     <p>Modified: <?php echo $products['modified']; ?></p>
                 </td>
-              
+
 
 
                 <td>Score: &#11088;<?php $cnt = 0;
@@ -97,27 +97,24 @@
                                     else :
                                         echo " -";
                                     endif;  ?></td>
-                <td><?php
-                    //$this->loadHelper('JsHelper');
-                    // $this->Html->event(
-                    //     'click',
-                    //     $this->Html->request(
-                    //         array('action' => 'vote', $products['id']), //this is effectively www.yourdomain.com/posts/vote/1 (if the post_id is 1)
-                    //         array('async' => true, 'update' => '#content')
-                    //     )
-                    // );
 
-                    ?>
                 <td>
-                    <?php echo $this->Form->input('score', ['class' => 'form-control', 'Placeholder' => 'Score']); ?>
+                    <?php
+                    $id = $products['id'];
+                    $data = array(1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5');
+                    echo $this->Form->create('Product', array('url' => array('action' => 'vote', $id), 'enctype' => 'multipart/form-data'));
+                    echo $this->Form->input('score', array("options" => $data));
+                    ?>
                 </td>
 
                 <td>
                     <?php
-                    echo $this->Form->button(__('VOTE!'), ['url' => ['action' => 'publish', 'class' => 'form=control btn btn-primary']]);
+                    echo $this->Form->button(__('VOTE!'), ['type' => 'submit', 'class' => 'form=control btn btn-success'])
                     ?>
                 </td>
-                <?php echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
+                <?php
+
+                echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
 
                 <div class="form-group">
                     <div class="col-lg-4">
