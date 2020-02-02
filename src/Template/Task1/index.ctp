@@ -37,6 +37,7 @@ echo $this->Html->link('export', array(
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Description</th>
+                <th scope="col">Score</th>
                 <th scope="col">Modified</th>
                 <th scope="col">Created</th>
                 <th scope="col">Action</th>
@@ -48,11 +49,24 @@ echo $this->Html->link('export', array(
                     <tr>
                         <td><?php echo $product->id; ?></td>
                         <td><?php echo $product->name; ?></td>
-                        <td><?php echo $product->price; ?></td>
+                        <td><?php echo $product->price; ?> €</td>
+
                         <td><?php echo $product->description; ?></td>
+                        <td> &#11088;<?php $cnt = 0;
+                                        $sum = 0;
+
+                                        foreach ($product->product_ratings as $rating) :
+                                            $cnt++;
+                                            $sum = $sum  + $rating->score;
+                                        endforeach;
+                                        if ($cnt != 0) :
+                                            echo number_format($sum / $cnt, 1);
+                                        else :
+                                            echo " -";
+                                        endif; ?></td>
                         <td><?php echo $product->modified; ?></td>
                         <td><?php echo $product->created; ?></td>
-                       
+
                         <td><?php echo $this->html->link('View', ['action' => 'view', $product->id], ['class' => 'btn btn-primary']) ?>
                             <?php echo $this->html->link('Edit', ['action' => 'edit', $product->id], ['class' => 'btn btn-success']) ?>
                             <?= $this->Form->postLink(

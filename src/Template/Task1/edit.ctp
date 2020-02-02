@@ -15,8 +15,6 @@
         <div class="col-lg-10">
             <?php
             echo $this->Form->create("Products", array('url' => '/task1/edit/' . $id, 'enctype' => 'multipart/form-data'));
-
-            //echo $this->Form->create('Product', array('url' => array('action' => 'edit'), 'enctype' => 'multipart/form-data'));
             echo $this->Form->input('name', ['value' => $products->name, 'class' => 'form-control']); ?>
         </div>
     </div>

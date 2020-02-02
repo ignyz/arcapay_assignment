@@ -25,11 +25,12 @@ class Task1Controller extends AppController
     {
         $p = TableRegistry::getTableLocator()->get('products');
         $products = $p->find('all', ['contain' => 'ProductRatings'])->toArray();
+
         // echo '<pre>';
         // print_r($products);
         // echo '</pre>';
         $this->set('products', $products);
-        //debug($a);
+        // debug($products[0]->product_ratings[0]->score);
     }
     public function add()
     {
@@ -42,7 +43,7 @@ class Task1Controller extends AppController
             $products->modified = date('Y-m-d H:i:s');
             //Check if image has been uploaded
 
-            if (!empty($this->request->getData()['photo']['name'])) { 
+            if (!empty($this->request->getData()['photo']['name'])) {
 
                 $file = $this->request->getData();
 
@@ -74,7 +75,7 @@ class Task1Controller extends AppController
     public function view($id = Null)
     {
         $products_table = TableRegistry::get('products');
-        $products = $products_table->get($id);
+        $products = $products_table->get($id, ['contain' => 'ProductRatings'])->toArray();
         $this->set('products', $products);
     }
     public function edit($id)
@@ -87,7 +88,7 @@ class Task1Controller extends AppController
             $products = $products_table->patchEntity($products, $this->request->getData());
             $products->modified = date('Y-m-d H:i:s');
             //-----------------------------------------------------------------------------
-            if (!empty($this->request->getData()['photo']['name'])) { 
+            if (!empty($this->request->getData()['photo']['name'])) {
 
                 $file = $this->request->getData();
 
@@ -119,7 +120,7 @@ class Task1Controller extends AppController
 
             $products->modified = date('Y-m-d H:i:s');
             //-----------------------------------------------------------------------------
-            if (!empty($this->request->getData()['photo']['name'])) { 
+            if (!empty($this->request->getData()['photo']['name'])) {
 
                 $file = $this->request->getData();
 

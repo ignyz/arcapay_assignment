@@ -63,49 +63,57 @@
 
 
         <legend>View product</legend>
-        <div class="form-group">
-            <div class="col-lg-10">
-                <p>Name: <?php echo $products->name; ?></p>
-            </div>
-        </div>
+        <table class="table table-striped table-hover">
+            <tr>
 
-        <br>
-        <div class="form-group">
-            <div class="col-lg-10">
-                <p>Price: <?php echo $products->price; ?></p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-lg-10">
-                <p>Description: <?php echo $products->description; ?></p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-lg-4">
-                <p>Created: <?php echo $products->created; ?></p>
-            </div>
-        </div>
+                <td>
+                    <p>Name: <?php echo $products['name']; ?></p>
+                </td>
 
 
-        <div class="form-group">
-            <div class="col-lg-4">
-                <p>Modified: <?php echo $products->modified; ?></p>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-4">
+                <td>
+                    <p>Price: <?php echo $products['price']; ?></p>
+                </td>
+
+
+                <td>
+                    <p>Description: <?php echo $products['description']; ?></p>
+                </td>
+
+                <td>Score: &#11088;<?php $cnt = 0;
+                                    $sum = 0;
+                                    foreach ($products['product_ratings'] as $rating) :
+                                        $cnt++;
+                                        $sum = $sum  + $rating['score'];
+                                    endforeach;
+                                    if ($cnt != 0) :
+                                        echo number_format($sum / $cnt, 1);
+                                    else :
+                                        echo " -";
+                                    endif;  ?></td>
+
+
+                <td>
+                    <p>Created: <?php echo $products['created']; ?></p>
+                </td>
+
+
+
+                <td>
+                    <p>Modified: <?php echo $products['modified']; ?></p>
+                </td>
+
                 <?php echo $this->html->link('Back', ['action' => 'index'], ['class' => 'btn btn-primary']); ?>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-4">
-                <?php if ($products['photo'] != Null) {
-                    echo $this->Html->image('' . $products['photo']);
-                } ?>
-            </div>
-        </div>
+
+                <div class="form-group">
+                    <div class="col-lg-4">
+                        <?php if ($products['photo'] != Null) {
+                            echo $this->Html->image('' . $products['photo']);
+                        } ?>
+                    </div>
+                </div>
+            <tr>
+        </table>
     </fieldset>
 </body>
 <script>
